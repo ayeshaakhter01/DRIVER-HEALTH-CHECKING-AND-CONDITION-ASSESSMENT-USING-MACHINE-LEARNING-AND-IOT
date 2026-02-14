@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Show Vehicles - Health Monitoring System</title>
+  <link rel="stylesheet" href="svstyle.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="adddriver.html">Add Driver</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+    </ul>
+    <button id="backButton">Back to Dashboard</button>
+  </nav>
+
+  <h1>Live Driver Health and GPS Status</h1>
+
+  <!-- ✅ Real-Time Driver Health Status -->
+  <div class="real-time-status">
+    <div>
+      <h3>Pulse Rate</h3>
+      <canvas id="pulseGauge"></canvas>
+      <p id="pulseValue">0</p>
+    </div>
+    <div>
+      <h3>Oxygen Level</h3>
+      <canvas id="oxygenGauge"></canvas>
+      <p id="oxygenValue">0</p>
+    </div>
+    <div>
+      <h3>Smoke Level Alert</h3>
+      <canvas id="smokeLevelGauge"></canvas>
+      <p id="smokeAlert">No Alert</p>
+    </div>
+  </div>
+
+  <!-- ✅ SOS Emergency Alert -->
+  <div id="sosAlert" style="display:none; font-size: 20px; color: red; font-weight: bold; margin: 20px;">
+    🚨 EMERGENCY SOS SIGNAL DETECTED!
+  </div>
+
+  <!-- ✅ GPS Section -->
+  <div class="gps-status">
+    <h3>Vehicle GPS Location</h3>
+    <p>Lat: <span id="latitude">Loading...</span>, Long: <span id="longitude">Loading...</span></p>
+    <div id="mapContainer">
+      <iframe id="mapFrame"></iframe>
+    </div>
+  </div>
+
+  <!-- ✅ JS File -->
+  <script src="showVehicles.js"></script>
+</body>
+</html>

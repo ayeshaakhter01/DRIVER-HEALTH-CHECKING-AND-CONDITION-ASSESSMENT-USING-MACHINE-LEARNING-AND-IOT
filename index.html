@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Monitoring System</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="adddriver.html">Add Driver</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+    </ul> 
+    <a href="showVehicles.html">
+      <button type="button" id="showVehiclesBtn">SHOW VEHICLES</button>
+    </a>
+  </nav>
+
+  <h1>Health Monitoring System</h1>
+
+  <!-- Gauges Section -->
+  <form action="submit_driver_data.php" method="POST" id="drivers">
+    <div class="meters" style="flex-wrap: wrap; justify-content: center; gap: 40px;">
+      <!-- Oxygen -->
+      <div class="gauge-block">
+        <canvas id="oxygenLevelGauge"></canvas>
+        <input type="text" id="oxygenLevelInput" name="oxygen_level" placeholder="Enter Oxygen Level" />
+      </div>
+
+      <!-- Body Temperature -->
+      <div class="gauge-block">
+        <canvas id="bodyTempGauge"></canvas>
+        <input type="text" id="tempInput" name="body_temperature" placeholder="Enter Temperature" />
+        <p id="tempAlert" style="color: red;"></p>
+      </div>
+
+      <!-- Reaction Time Test -->
+      <div class="gauge-block">
+        <div id="reactionTestBox" style="width: 200px; height: 200px; background-color: #3498db; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px; cursor: pointer;">
+          <div id="reactionText" style="font-size: 14px; text-align: center;">Click to start test</div>
+        </div>
+        <input type="number" id="reactionTime" name="reaction_time" placeholder="Enter Reaction Time" />
+      </div>
+
+      <!-- Alcohol Level -->
+      <div class="gauge-block">
+        <canvas id="alcoholLevelGauge"></canvas>
+        <input type="text" id="alcoholLevelInput" name="alcohol_level" placeholder="Enter Alcohol Level" />
+        <p id="alcoholAlert" style="color: red;"></p>
+      </div>
+
+      <!-- Pulse -->
+      <div class="gauge-block">
+        <canvas id="pulseGauge"></canvas>
+        <input type="text" id="pulseRateInput" name="pulse_rate" placeholder="Enter Pulse Rate" />
+      </div>
+    </div>
+
+    <!-- Driving Info -->
+    <div style="margin-top: 30px;">
+      <input type="text" id="knowDrive" name="know_drive" placeholder="Know how to Drive (Yes/No)" style="width: 250px; margin-right: 10px;" />
+      <input type="number" id="yearsDriving" name="years_driving" placeholder="Years of Driving" style="width: 250px;" />
+    </div>
+
+    <!-- Color Vision Test -->
+    <h2 style="text-align:center; margin-top: 40px;">Color Vision Test</h2>
+    <div id="colorTestSection" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <!-- Image 1 -->
+      <div class="color-card">
+        <img src="images/15.png" width="100">
+        <input type="text" id="input1" name="color_test_1" placeholder="Enter The Number" />
+        <p id="info1" class="color-info"></p>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="color-card">
+        <img src="images/7.png" width="100">
+        <input type="text" id="input2" name="color_test_2" placeholder="Enter The Number" />
+        <p id="info2" class="color-info"></p>
+      </div>
+
+      <!-- Image 3 -->
+      <div class="color-card">
+        <img src="images/6.png" width="100">
+        <input type="text" id="input3" name="color_test_3" placeholder="Enter The Number" />
+        <p id="info3" class="color-info"></p>
+      </div>
+
+      <!-- Image 4 -->
+      <div class="color-card">
+        <img src="images/26.png" width="100">
+        <input type="text" id="input4" name="color_test_4" placeholder="Enter The Number" />
+        <p id="info4" class="color-info"></p>
+      </div>
+    </div>
+
+    <!-- Check Vision Button -->
+    <div style="text-align: center; margin-top: 20px;">
+      <!-- Changed to type="button" to prevent form submission -->
+      <button type="button" onclick="checkColorVision()" style="background-color: green;">Check Vision</button>
+    </div>
+
+    <!-- Vision Dropdowns -->
+    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
+      <select id="visionIssues" name="vision_issues" style="width: 200px;">
+        <option value="yes">Vision Issues: Yes</option>
+        <option value="no">Vision Issues: No</option>
+      </select>
+
+      <select id="nightBlindness" name="night_blindness" style="width: 200px;">
+        <option value="yes">Night Blindness: Yes</option>
+        <option value="no">Night Blindness: No</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button type="submit" id="submitButton">Submit Health Data</button>
+    </div>
+  </form>
+
+  <!-- ✅ Live ESP32 Data Section -->
+  <div style="margin-top: 40px; text-align: center;">
+    <h3>Live Sensor Readings</h3>
+    <p>Body Temperature: <span id="bodyTemp">--</span> °C</p>
+    <p>Alcohol Level: <span id="alcoholLevel">--</span> %</p>
+    <p>Pulse IR Raw: <span id="pulseRaw">--</span></p>
+    <p>Heartbeat Detected: <span id="beatDetected">--</span></p>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

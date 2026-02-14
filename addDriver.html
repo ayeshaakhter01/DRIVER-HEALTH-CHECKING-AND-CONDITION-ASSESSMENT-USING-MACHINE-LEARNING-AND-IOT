@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Driver - Driver Health Monitor</title>
+  <link rel="stylesheet" href="addDriver.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="showVehicles.html">Dashboard</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="form-container">
+    <h2>Add New Driver</h2>
+    <form action="register_driver.php" method="POST">
+      <label for="name">Driver Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required />
+
+      <label for="license">License Expiry Date:</label>
+      <input type="date" id="license" name="license" required />
+
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" name="contact" pattern="[0-9]{11}" placeholder="e.g. 017XXXXXXXX" required />
+
+      <button type="submit">Register Driver</button>
+    </form>
+  </div>
+</body>
+</html>
